@@ -1,0 +1,218 @@
+/* Conteneur principal */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f8fb;
+  color: #0f1e46;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  background-color: #0f1e46;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.menu h3 {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #ccc;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu ul li {
+  padding: 10px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.2s;
+}
+
+.menu ul li:hover {
+  color: #f50057;
+}
+
+/* Utilisateur en bas de sidebar */
+.user-section {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}
+
+/* Section principale */
+.calendar-section {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* En-tête calendrier */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.header-left {
+  flex: 1;
+  min-width: 200px;
+}
+
+.header-left h1 {
+  font-size: 32px;
+  margin: 0;
+  color: #0f1e46;
+}
+
+.header-left p {
+  color: #444;
+  margin: 5px 0 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.header-right i {
+  font-size: 18px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.header-right i:hover {
+  color: #f50057;
+}
+
+.nav-arrows button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0f1e46;
+  font-size: 18px;
+}
+
+.nav-arrows button:hover {
+  color: #f50057;
+}
+
+.dropdown-view {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+/* Bouton Créer */
+.add-btn {
+  background-color: #f50057;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.add-btn:hover {
+  background-color: #c51162;
+}
+
+/* Filtres calendrier */
+.calendar-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.calendar-filters button {
+  background-color: #0f1e46;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.calendar-filters button:hover {
+  background-color: #f50057;
+}
+
+/* Grille calendrier */
+.calendar-grid {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 20px;
+  display: block;
+}
+
+.calendar-grid table {
+  width: 100%;
+  border-collapse: collapse;
+  height: 100%;
+  table-layout: fixed;
+}
+
+.calendar-grid thead th {
+  background-color: #0f1e46;
+  color: white;
+  padding: 10px;
+}
+
+.calendar-grid th,
+.calendar-grid td {
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.calendar-grid td:first-child {
+  font-weight: bold;
+  background-color: #e6e6e6;
+}
+
+.calendar-grid tbody tr {
+  height: 40px;
+}
+
+.active-day {
+  background-color: #f50057 !important;
+  color: white;
+}

@@ -20,4 +20,10 @@ export class AuthService {
   }): Observable<any> {
     return this.http.post('http://localhost:8080/api/auth/register', utilisateur);
   }
+
+  // Ajout de la méthode isLoggedIn()
+  isLoggedIn(): boolean {
+    // Par exemple, on vérifie la présence d'un token dans localStorage
+    return !!localStorage.getItem('token');
+  }
 }

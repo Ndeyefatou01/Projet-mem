@@ -11,7 +11,7 @@ Elle permet aux employés de planifier des réunions, réserver des salles, envo
 
 * 📅 **Planification des réunions**
 
-  * Création, modification, suppression de réunions
+  * Création, modification, suppression de réunions<qsezr=
   * Invitation de participants internes
   * Gestion des horaires et disponibilités en temps réel
 

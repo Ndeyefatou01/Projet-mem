@@ -1,1 +1,111 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo-section">
+      <i class="bi bi-app-indicator logo-icon"></i>
+      <span class="logo-text">Eyroom</span>
+    </div>
+
+    <nav class="menu">
+      <h3>MENU PRINCIPAL</h3>
+      <ul>
+        <li><i class="bi bi-speedometer2"></i> Tableau de Bord</li>
+        <li><i class="bi bi-calendar-week"></i> Calendrier</li>
+        <li><i class="bi bi-door-open"></i> Gestion des Salles de réunion</li>
+        <li><i class="bi bi-bell"></i> Notifications</li>
+      </ul>
+
+      <h3>ORGANISATION</h3>
+      <ul>
+        <li><i class="bi bi-person-lines-fill"></i> Contacts</li>
+        <li><i class="bi bi-people-fill"></i> Équipes</li>
+        <li><i class="bi bi-briefcase"></i> Mes réunions</li>
+        <li><i class="bi bi-file-earmark-text"></i> Rapports de réunion</li>
+      </ul>
+
+      <h3>ESPACE PERSONNEL</h3>
+      <ul>
+        <li><i class="bi bi-stickies"></i> Notes</li>
+        <li><i class="bi bi-check2-square"></i> To-do List</li>
+        <li><i class="bi bi-calendar-plus"></i> Planification d’événement</li>
+      </ul>
+
+      <h3>GÉNÉRAL</h3>
+      <ul>
+        <li><i class="bi bi-gear"></i> Paramètres</li>
+        <li><i class="bi bi-question-circle"></i> Aide et support</li>
+        <li><i class="bi bi-trash"></i> Corbeille</li>
+        <li><i class="bi bi-grid-3x3-gap"></i> Apps</li>
+      </ul>
+
+      <div class="user-section">
+        <img src="https://i.pravatar.cc/40?img=7" alt="Utilisateur" />
+        <span>Basile SIOTENE</span>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="calendar-section">
+    <!-- Header -->
+    <header class="calendar-header">
+      <div class="header-left">
+        <h1>Calendrier</h1>
+        <p>Planifiez vos réunions en toute simplicité et optimisez votre emploi du temps.</p>
+      </div>
+
+      <div class="header-right">
+        <i class="bi bi-search"></i>
+        <i class="bi bi-question-circle"></i>
+        <i class="bi bi-share"></i>
+
+        <<div class="nav-arrows">
+            <button title="Jour précédent"><i class="bi bi-chevron-left"></i></button>
+            <button title="Jour suivant"><i class="bi bi-chevron-right"></i></button>
+        </div>
+
+
+        <<select class="dropdown-view" title="Vue du calendrier">
+            <option>Semaine</option>
+            <option>Mois</option>
+            <option>Jour</option>
+        </select>
+
+
+        <button class="add-btn">+ Créer</button>
+      </div>
+
+      <!-- Filtres -->
+      <div class="calendar-filters">
+        <button><i class="bi bi-calendar-range"></i> Tous les agendas</button>
+        <button><i class="bi bi-calendar-event"></i> Événements</button>
+        <button><i class="bi bi-people"></i> Réunions</button>
+        <button><i class="bi bi-alarm"></i> Rappels</button>
+      </div>
+    </header>
+
+    <!-- Calendrier -->
+    <section class="calendar-grid">
+      <table>
+        <thead>
+          <tr>
+            <th>GMT+00</th>
+            <th>lundi 9</th>
+            <th class="active-day">mardi 10</th>
+            <th>mercredi 11</th>
+            <th>jeudi 12</th>
+            <th>vendredi 13</th>
+            <th>samedi 14</th>
+            <th>dimanche 15</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let hour of heures">
+            <td>{{ hour }}</td>
+            <td colspan="7"></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
