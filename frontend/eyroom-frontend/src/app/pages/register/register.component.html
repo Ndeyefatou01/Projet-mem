@@ -1,0 +1,25 @@
+<div class="inscription-container">
+  <h2>Créer un compte</h2>
+  <form (ngSubmit)="onSubmit()">
+    <label for="nom">Nom</label>
+    <input type="text" id="nom" [(ngModel)]="nom" name="nom" placeholder="Ex: Fatou" />
+
+    <label for="prenom">Prénom</label>
+    <input type="text" id="prenom" [(ngModel)]="prenom" name="prenom" placeholder="Ex: Sarr" />
+
+    <label for="email">Adresse Email</label>
+    <input type="email" id="email" [(ngModel)]="email" name="email" placeholder="exemple@email.com" />
+
+    <label for="password">Mot de passe</label>
+    <input type="password" id="password" [(ngModel)]="motDePasse" name="motDePasse" placeholder="••••••••" />
+
+    <label for="confirmPassword">Confirmer le mot de passe</label>
+    <input type="password" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" placeholder="••••••••" />
+
+    <button type="submit">S'inscrire</button>
+  </form>
+
+  <p class="login-link">
+    Déjà inscrit ? <a (click)="goToConnexion()">Se connecter</a>
+  </p>
+</div>

@@ -1,0 +1,64 @@
+.inscription-container {
+  background-color: #f8f8fb;
+  max-width: 450px;
+  margin: 40px auto;
+  padding: 30px;
+  border-left: 5px solid #f50057;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(15, 30, 70, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.inscription-container h2 {
+  color: #0f1e46;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  color: #0f1e46;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+button {
+  background-color: #f50057;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #c51162;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.login-link a {
+ color: #f50057;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
