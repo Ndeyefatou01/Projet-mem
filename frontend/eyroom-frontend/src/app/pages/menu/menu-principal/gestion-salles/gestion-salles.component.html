@@ -1,1 +1,163 @@
-<p>gestion-salles works!</p>
+<div class="dashboard-container">
+  
+  <!-- Sidebar (même structure que l'accueil) -->
+  <div class="sidebar">
+    <div class="logo-section">
+      <i class="fas fa-calendar-alt"></i>
+      <span>Eyroom</span>
+    </div>
+    
+    <div class="menu">
+      <h3>Menu Principal</h3>
+      <ul>
+        <li><a routerLink="/dashboard"><i class="fas fa-th-large"></i> Tableau de Bord</a></li>
+        <li><a routerLink="/calendrier"><i class="fas fa-calendar"></i> Calendrier</a></li>
+        <li><a routerLink="/gestion-salles" class="active"><i class="fas fa-door-open"></i> Gestion des Salles de réunions</a></li>
+        <li><a routerLink="/notifications"><i class="fas fa-bell"></i> Notifications</a></li>
+      </ul>
+      
+      <h3>Organisation</h3>
+      <ul>
+        <li><a routerLink="/contacts"><i class="fas fa-users"></i> Contacts</a></li>
+        <li><a routerLink="/equipes"><i class="fas fa-user-friends"></i> Équipes</a></li>
+        <li><a routerLink="/mes-reunions"><i class="fas fa-calendar-check"></i> Mes réunions</a></li>
+        <li><a routerLink="/rapports"><i class="fas fa-chart-bar"></i> Rapports de réunion</a></li>
+      </ul>
+      
+      <h3>Espace Personnel</h3>
+      <ul>
+        <li><a routerLink="/notes"><i class="fas fa-sticky-note"></i> Notes</a></li>
+        <li><a routerLink="/todo"><i class="fas fa-tasks"></i> To-do List</a></li>
+        <li><a routerLink="/planning"><i class="fas fa-calendar-alt"></i> Planification d'événement</a></li>
+      </ul>
+      
+      <h3>Général</h3>
+      <ul>
+        <li><a routerLink="/parametres"><i class="fas fa-cog"></i> Paramètres</a></li>
+        <li><a routerLink="/aide"><i class="fas fa-question-circle"></i> Aide et support</a></li>
+        <li><a routerLink="/corbeille"><i class="fas fa-trash"></i> Corbeille</a></li>
+        <li><a routerLink="/apps"><i class="fas fa-th"></i> Apps</a></li>
+      </ul>
+    </div>
+    
+    <div class="user-section">
+      <div class="user-avatar">
+        <img src="assets/avatar.jpg" alt="Avatar" style="width: 40px; height: 40px; border-radius: 50%;">
+      </div>
+      <span>Cheikh Gueye</span>
+    </div>
+  </div>
+  
+  <!-- Section principale -->
+  <div class="salles-section">
+    <!-- En-tête -->
+    <div class="salles-header">
+      <div class="header-left">
+        <h1>Gestion des Salles</h1>
+        <p>Consultez et réservez vos salles de réunion en temps réel</p>
+      </div>
+      <div class="header-right">
+        <i class="fas fa-search"></i>
+        <i class="fas fa-question-circle"></i>
+        <i class="fas fa-share-alt"></i>
+        <button class="add-btn">+ Ajouter Salle</button>
+      </div>
+    </div>
+    
+    <!-- Filtres -->
+    <div class="filtres-section">
+      <div class="filtres-row">
+        <div class="filtre-group">
+          <label>Rechercher:</label>
+          <input type="text" [(ngModel)]="rechercheText" (input)="filtrerSalles()" placeholder="Nom de la salle..." class="search-input">
+        </div>
+        
+        <div class="filtre-group">
+          <label>Statut:</label>
+          <select [(ngModel)]="filtreStatut" (change)="filtrerSalles()" class="filter-select">
+            <option value="tous">Tous</option>
+            <option value="libre">Libre</option>
+            <option value="occupee">Occupée</option>
+            <option value="maintenance">Maintenance</option>
+          </select>
+        </div>
+        
+        <div class="filtre-group">
+          <label>Capacité:</label>
+          <select [(ngModel)]="filtreCapacite" (change)="filtrerSalles()" class="filter-select">
+            <option value="tous">Toutes</option>
+            <option value="petite">Petite (≤8)</option>
+            <option value="moyenne">Moyenne (9-15)</option>
+            <option value="grande">Grande (>15)</option>
+          </select>
+        </div>
+        
+        <div class="filtre-group">
+          <label>Étage:</label>
+          <select [(ngModel)]="filtreEtage" (change)="filtrerSalles()" class="filter-select">
+            <option value="tous">Tous</option>
+            <option value="1">1er étage</option>
+            <option value="2">2ème étage</option>
+            <option value="3">3ème étage</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Grille des salles -->
+    <div class="salles-grid">
+      <div class="salle-card" *ngFor="let salle of sallesFiltrees">
+        <div class="salle-header">
+          <h3>{{ salle.nom }}</h3>
+          <span class="statut-badge" [ngClass]="getStatutClass(salle.statut)">
+            {{ getStatutText(salle.statut) }}
+          </span>
+        </div>
+        
+        <div class="salle-info">
+          <div class="info-row">
+            <i class="fas fa-users"></i>
+            <span>{{ salle.capacite }} personnes</span>
+          </div>
+          <div class="info-row">
+            <i class="fas fa-building"></i>
+            <span>{{ salle.etage }}{{ salle.etage === 1 ? 'er' : 'ème' }} étage</span>
+          </div>
+          <div class="info-row">
+            <i class="fas fa-clock"></i>
+            <span>{{ salle.prochaineCreneau }}</span>
+          </div>
+        </div>
+        
+        <div class="equipements">
+          <h4>Équipements:</h4>
+          <div class="equipements-tags">
+            <span class="equipement-tag" *ngFor="let equipement of salle.equipements">
+              {{ equipement }}
+            </span>
+          </div>
+        </div>
+        
+        <div class="salle-actions">
+          <button class="btn-details" (click)="voirDetails(salle)">
+            <i class="fas fa-info-circle"></i> Détails
+          </button>
+          <button class="btn-reserver" 
+                  (click)="reserverSalle(salle)" 
+                  [disabled]="salle.statut !== 'libre'"
+                  [ngClass]="{'disabled': salle.statut !== 'libre'}">
+            <i class="fas fa-calendar-plus"></i> 
+            {{ salle.statut === 'libre' ? 'Réserver' : 'Indisponible' }}
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Message si aucune salle trouvée -->
+    <div class="no-results" *ngIf="sallesFiltrees.length === 0">
+      <i class="fas fa-search"></i>
+      <p>Aucune salle ne correspond à vos critères de recherche.</p>
+    </div>
+  </div>
+  
+</div>

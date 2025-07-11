@@ -1,0 +1,382 @@
+/* Réutilisation des styles de base de l'accueil */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f8fb;
+  color: #0f1e46;
+}
+
+/* Sidebar (même style que l'accueil) */
+.sidebar {
+  width: 280px;
+  background-color: #0f1e46;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.menu h3 {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #ccc;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu ul li {
+  padding: 10px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.2s;
+}
+
+.menu ul li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.menu ul li a:hover {
+  color: #f50057;
+}
+
+.menu ul li a.active {
+  color: #f50057;
+  font-weight: bold;
+}
+
+.user-section {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}
+
+/* Section principale des salles */
+.salles-section {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* En-tête des salles (même style que calendrier) */
+.salles-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.header-left {
+  flex: 1;
+  min-width: 200px;
+}
+
+.header-left h1 {
+  font-size: 32px;
+  margin: 0;
+  color: #0f1e46;
+}
+
+.header-left p {
+  color: #444;
+  margin: 5px 0 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.header-right i {
+  font-size: 18px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.header-right i:hover {
+  color: #f50057;
+}
+
+.add-btn {
+  background-color: #f50057;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.add-btn:hover {
+  background-color: #c51162;
+}
+
+/* Section des filtres */
+.filtres-section {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.filtres-row {
+  display: flex;
+  gap: 20px;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.filtre-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filtre-group label {
+  font-weight: bold;
+  color: #0f1e46;
+  font-size: 14px;
+}
+
+.search-input, .filter-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 150px;
+}
+
+.search-input:focus, .filter-select:focus {
+  outline: none;
+  border-color: #f50057;
+}
+
+/* Grille des salles */
+.salles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.salle-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.salle-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.salle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.salle-header h3 {
+  margin: 0;
+  color: #0f1e46;
+  font-size: 18px;
+}
+
+.statut-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.statut-libre {
+  background-color: #4caf50;
+  color: white;
+}
+
+.statut-occupee {
+  background-color: #f44336;
+  color: white;
+}
+
+.statut-maintenance {
+  background-color: #ff9800;
+  color: white;
+}
+
+.salle-info {
+  margin-bottom: 15px;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: #666;
+}
+
+.info-row i {
+  color: #0f1e46;
+  width: 16px;
+}
+
+.equipements h4 {
+  margin: 0 0 8px 0;
+  color: #0f1e46;
+  font-size: 14px;
+}
+
+.equipements-tags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.equipement-tag {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.salle-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.btn-details {
+  background-color: #e0e0e0;
+  color: #0f1e46;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-details:hover {
+  background-color: #bdbdbd;
+}
+
+.btn-reserver {
+  background-color: #f50057;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 1;
+}
+
+.btn-reserver:hover:not(.disabled) {
+  background-color: #c51162;
+}
+
+.btn-reserver.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Message aucun résultat */
+.no-results {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.no-results i {
+  font-size: 48px;
+  color: #ddd;
+  margin-bottom: 15px;
+}
+
+.no-results p {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+  }
+  
+  .salles-section {
+    padding: 20px;
+  }
+  
+  .salles-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .filtres-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .salles-grid {
+    grid-template-columns: 1fr;
+  }
+}

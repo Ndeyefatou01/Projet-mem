@@ -1,1 +1,134 @@
-<p>mes-reunions works!</p>
+<div class="mes-reunions-container">
+  <!-- Header -->
+  <div class="header">
+    <div class="title-section">
+      <h1>Mes Réunions</h1>
+      <p>Gérez vos réunions, accédez aux QR codes et consultez votre historique</p>
+    </div>
+    <div class="actions">
+      <button class="btn-primary" (click)="createMeeting()">
+        <i class="icon-plus"></i>
+        Nouvelle Réunion
+      </button>
+    </div>
+  </div>
+
+  <!-- Filtres -->
+  <div class="filters">
+    <div class="filter-tabs">
+      <button class="filter-tab" [class.active]="activeFilter === 'all'" (click)="setActiveFilter('all')">Toutes</button>
+      <button class="filter-tab" [class.active]="activeFilter === 'upcoming'" (click)="setActiveFilter('upcoming')">À venir</button>
+      <button class="filter-tab" [class.active]="activeFilter === 'ongoing'" (click)="setActiveFilter('ongoing')">En cours</button>
+      <button class="filter-tab" [class.active]="activeFilter === 'completed'" (click)="setActiveFilter('completed')">Terminées</button>
+    </div>
+    <div class="search-box">
+      <input
+        type="text"
+        placeholder="Rechercher une réunion..."
+        [(ngModel)]="searchTerm"
+        (input)="filterMeetings()"
+      />
+      <i class="icon-search"></i>
+    </div>
+  </div>
+
+  <!-- Liste des réunions -->
+  <div class="meetings-grid">
+    <div *ngFor="let meeting of filteredMeetings" class="meeting-card" [class.ongoing]="meeting.status === 'ongoing'">
+      <div class="status-badge" [class]="meeting.status">{{ getStatusLabel(meeting.status) }}</div>
+
+      <div class="meeting-info">
+        <h3>{{ meeting.subject }}</h3>
+        <div class="meeting-details">
+          <div class="detail-item">
+            <i class="icon-calendar"></i>
+            <span>{{ formatDate(meeting.date) }}</span>
+          </div>
+          <div class="detail-item">
+            <i class="icon-clock"></i>
+            <span>{{ meeting.startTime }} - {{ meeting.endTime }}</span>
+          </div>
+          <div class="detail-item">
+            <i class="icon-location"></i>
+            <span>{{ meeting.room }}</span>
+          </div>
+          <div class="detail-item">
+            <i class="icon-users"></i>
+            <span>{{ meeting.participants.length }} participant(s)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="qr-section" *ngIf="meeting.status === 'upcoming' || meeting.status === 'ongoing'">
+        <div class="qr-code">
+          <div class="qr-placeholder">
+            <div class="qr-pattern"></div>
+          </div>
+          <p>QR Code d'accès</p>
+        </div>
+        <button class="btn-qr" (click)="showQRCode(meeting)">
+          <i class="icon-qr"></i>
+          Afficher QR
+        </button>
+      </div>
+
+      <div class="meeting-actions">
+        <button class="btn-action" (click)="editMeeting(meeting)" *ngIf="meeting.status === 'upcoming'">
+          <i class="icon-edit"></i>
+          Modifier
+        </button>
+        <button class="btn-action" (click)="viewDetails(meeting)">
+          <i class="icon-eye"></i>
+          Détails
+        </button>
+        <button class="btn-action danger" (click)="cancelMeeting(meeting)" *ngIf="meeting.status === 'upcoming'">
+          <i class="icon-trash"></i>
+          Annuler
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="filteredMeetings.length === 0">
+    <div class="empty-icon">
+      <i class="icon-calendar-empty"></i>
+    </div>
+    <h3>Aucune réunion trouvée</h3>
+    <p>{{ getEmptyStateMessage() }}</p>
+    <button class="btn-primary" (click)="createMeeting()">Créer une réunion</button>
+  </div>
+
+  <!-- Modal QR Code -->
+  <div class="modal-overlay" *ngIf="showQRModal" (click)="closeQRModal()">
+    <div class="qr-modal" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>QR Code d'accès</h3>
+        <button class="btn-close" (click)="closeQRModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="qr-code-large">
+          <div class="qr-pattern-large"></div>
+        </div>
+        <div class="qr-info">
+          <h4>{{ selectedMeeting?.subject }}</h4>
+          <p>{{ selectedMeeting?.room }}</p>
+          <p>{{ formatDate(selectedMeeting?.date) }} à {{ selectedMeeting?.startTime }}</p>
+        </div>
+        <div class="qr-instructions">
+          <p>Scannez ce QR code à l'entrée de la salle pour déverrouiller la porte</p>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-secondary" (click)="downloadQR()">
+          <i class="icon-download"></i>
+          Télécharger
+        </button>
+        <button class="btn-primary" (click)="shareQR()">
+          <i class="icon-share"></i>
+          Partager
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
