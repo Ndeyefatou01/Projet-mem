@@ -670,8 +670,92 @@ Bien sûr ! Voici la **liste complète des URL à tester manuellement** dans t
 <img src="src/assets/apps.png" alt="Apps" width="600">
 ```
 
+-
+**(1) la redirection fonctionnelle avec `routerLink`** et **(2) le stylage dynamique des liens de navigation** dans la sidebar.
+
 ---
 
+## 🧭 Intégration de la navigation dynamique avec Angular Router
 
+### ✅ Objectif :
+
+Permettre une navigation fluide entre les pages via le **menu latéral (sidebar)**, en utilisant le système de routing d’Angular, sans rechargement complet de la page.
+
+---
+
+### 🔹 Étapes réalisées
+
+#### 1. **Mise en place des liens de navigation (`routerLink`) dans la sidebar**  de accueil.component.html
+
+Chaque item du menu a été transformé en lien Angular dynamique :
+
+```html
+<li><a routerLink="/dashboard">Dashboard</a></li>
+<li><a routerLink="/contacts">Contacts</a></li>
+<li><a routerLink="/parametres">Paramètres</a></li>
+```
+
+✅ Résultat : Cliquer sur un lien met à jour l’URL et charge **le composant correspondant** sans quitter l’application.
+
+---
+
+#### 2. **Correction des problèmes de style CSS**
+
+Un bug de style est apparu lorsque les balises `<a>` ont été remplacées par `routerLink`.
+👉 Elles perdaient les styles CSS définis pour `.sidebar .menu ul li a`.
+
+✅ Solution : Vérification du CSS appliqué à ces liens, avec un style complet et fluide :
+
+```css
+.sidebar .menu ul li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.sidebar .menu ul li a:hover {
+  color: #f50057;
+}
+
+.sidebar .menu ul li a.active {
+  color: #f50057;
+  font-weight: bold;
+}
+```
+
+👉 Ce style assure une **navigation claire**, avec un **effet au survol** et une **mise en évidence du lien actif**.
+
+---
+
+#### 3. **Importation du `RouterModule` dans le composant standalone `AccueilComponent`**
+
+Angular standalone nécessite un import explicite :
+
+```ts
+import { RouterModule } from '@angular/router';
+
+@Component({
+  imports: [CommonModule, RouterModule],
+})
+```
+
+✅ Sans cela, les balises `routerLink` ne fonctionnent pas.
+
+---
+
+### 🧪 Résultat final
+
+* ✔ Navigation fluide entre les vues Angular
+* ✔ Sidebar fonctionnelle avec style moderne et interactions visuelles
+* ✔ Code CSS optimisé et maintenu
+* ✔ Intégration propre des routes Angular avec composants standalone
+
+---
 
 Souhaites-tu que je t’aide à configurer un composant `NotFoundComponent` si une route n’existe pas (404) ?
+
+
