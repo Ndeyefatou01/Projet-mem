@@ -42,7 +42,7 @@ export class LoginComponent {
         }
 
         localStorage.setItem('userEmail', email);
-        this.router.navigate(['/dashboard']); // Redirection vers le dashboard
+        this.router.navigate(['/accueil']); // Redirection vers la page d'accueil
       },
       error: (err) => {
         alert('Email ou mot de passe incorrect');

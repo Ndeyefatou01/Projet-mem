@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-accueil',
+  standalone: true,
   imports: [CommonModule],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  templateUrl: './accueil.component.html',
+  styleUrls: ['./accueil.component.css']
 })
-export class DashboardComponent {
+
+export class AccueilComponent {
    heures = ['08:00', '09:00', '10:00', '11:00', '12:00'];
 }

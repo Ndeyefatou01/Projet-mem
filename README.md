@@ -127,37 +127,36 @@ Affichage autonome :
 
 ## 🛠️ On commence maintenant avec l'initialisation du projet : le frontend avec Angular et le Backend ia [Spring Initializr](https://start.spring.io)
 
+## ⚙️ Initialisation du projet
 
-dans le terminal : 
-    cd frontend
-    ng new eyroom-frontend      //pour la création du projet front.
+### 📁 Arborescence
 
+* `frontend/eyroom-frontend/` → Projet Angular
+* `backend/` → Projet Spring Boot
+
+---
+## 🧱 Mise en place de l’environnement
+
+### 1. Création du projet Angular
+
+```bash
+cd frontend
+ng new eyroom-frontend
+```
  Le projet Angular est maintenant dans ## "projet-eyroom/frontend/eyroom-frontend"
 
-Créons le projet Spring Boot dans /backend
-Va sur https://start.spring.io et configure :
+### 2. Création du backend avec Spring Initializr
 
-Project : Maven
+Site : [https://start.spring.io](https://start.spring.io)
 
-Language : Java
+**Configuration :**
 
-Spring Boot : 3.x
-
-Group : com.eyroom
-
-Artifact : backend
-
-Name : backend
-
-Dependencies :
-
-Spring Web
-
-Spring Data JPA
-
-H2 Database
-
-Lombok
+* Project : Maven
+* Language : Java
+* Spring Boot : 3.x
+* Group : com.eyroom
+* Artifact : backend
+* Dependencies : Spring Web, Spring Data JPA, H2 Database, Lombok
 
 👉 Clique sur "Generate", et décompresse le .zip dans le dossier eyroom/backend 
 
@@ -170,15 +169,10 @@ Lombok
 
 ### 1. Installer `concurrently` dans le dossier `projet-eyroom/frontend/eyroom-frontend` :
 
-    cd projet-eyroom/frontend/eyroom-frontend
-
-Puis installe le package `concurrently` en devDependencies :
-
 ```bash
+cd projet-eyroom/frontend/eyroom-frontend
 npm install concurrently --save-dev
 ```
-
----
 
 ### 2. Modifier ton `package.json`
 
@@ -197,7 +191,6 @@ Dans ton fichier `package.json`, il faut **ajouter les scripts backend et dev** 
   "dev": "concurrently \"npm start\" \"npm run backend\""
 }
 ```
-
 
 ### 3. Lancer les deux serveurs en même temps
 
@@ -218,6 +211,81 @@ npm run dev
 ---
 
 
+## 👥 Mise en place du formulaire d'inscription et de connexion (avec backend PostgreSQL)
 
+### 🔹 Backend – Spring Boot
 
+* Création de l’entité `Utilisateur`
+* DTO `RegisterRequest`
+* Repository `UserRepository`
+* Service `UserService`
+* Contrôleur `AuthController`
+
+**Endpoints :**
+
+* `POST /api/auth/register` → Ajoute un utilisateur
+* `POST /api/auth/login` → Vérifie email + mot de passe
+
+### 🔹 Base de données PostgreSQL
+
+Configuration dans `application.properties` :
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/eyroomdb
+spring.datasource.username=postgres
+spring.datasource.password=***
+spring.jpa.hibernate.ddl-auto=update
+```
+
+Hibernate se charge de créer les tables.
+
+### 🔹 Frontend – Angular
+
+**Composants :**
+
+* `login.component.ts` (standalone)
+* `register.component.ts` (standalone)
+
+**Routing – `app.routes.ts` :**
+
+```ts
+{ path: '', redirectTo: 'login', pathMatch: 'full' },
+{ path: 'login', loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent) },
+{ path: 'register', loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent) },
+{ path: 'accueil', loadComponent: () => import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent), canActivate: [AuthGuard] }
+```
+
+**Service – `auth.service.ts` :**
+
+* `register(utilisateur)` → `/api/auth/register`
+* `login(credentials)` → `/api/auth/login`
+
+**Redirections :**
+
+* Après inscription → `/login`
+* Après connexion → `/accueil`
+
+**Sécurité :**
+
+* Stockage de l’`email` dans `localStorage`
+* Guard `AuthGuard` avec méthode `isLoggedIn()`
+
+**Tests réussis :**
+
+* 🔐 Connexion utilisateur : ✅
+* 📝 Inscription utilisateur : ✅
+* 🔄 Redirection après succès : ✅
+* ✅ Test Postman : fonctionnement OK
+
+> 📸 **Captures d’écran à inclure ici :**
+>
+> * Formulaire d’inscription rempli
+> * Formulaire de connexion
+> * Console backend : `Utilisateur enregistré`
+> * Aperçu de la base PostgreSQL avec utilisateurs
+> * Redirection vers /accueil après login
+
+---
+
+**Prochaine étape** : Construction du **Dashboard** et du **calendrier des réunions**.
 
