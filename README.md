@@ -289,3 +289,183 @@ Hibernate se charge de créer les tables.
 
 **Prochaine étape** : Construction du **Dashboard** et du **calendrier des réunions**.
 
+
+
+
+Parfait ! Alors on remplace **"tableau"** par **"dashboard"** pour correspondre au nom correct du composant.
+
+Voici les **commandes mises à jour** pour générer tous tes composants avec une structure propre :
+
+---
+
+## ✅ Structure de génération avec `dashboard` au lieu de `tableau`
+
+### 🔹 1. MENU PRINCIPAL
+
+```bash
+ng generate component pages/menu/dashboard --standalone
+ng generate component pages/menu/calendrier --standalone
+ng generate component pages/menu/gestion-salles --standalone
+ng generate component pages/menu/notifications --standalone
+```
+
+---
+
+### 🔹 2. ORGANISATION
+
+```bash
+ng generate component pages/menu/contacts --standalone
+ng generate component pages/menu/equipes --standalone
+ng generate component pages/menu/mes-reunions --standalone
+ng generate component pages/menu/rapports-reunion --standalone
+```
+
+---
+
+### 🔹 3. ESPACE PERSONNEL
+
+```bash
+ng generate component pages/menu/notes --standalone
+ng generate component pages/menu/todo-list --standalone
+ng generate component pages/menu/planification-evenement --standalone
+```
+
+---
+
+### 🔹 4. GÉNÉRAL
+
+```bash
+ng generate component pages/menu/parametres --standalone
+ng generate component pages/menu/aide-support --standalone
+ng generate component pages/menu/corbeille --standalone
+ng generate component pages/menu/apps --standalone
+```
+
+---
+
+## 📁 Arborescence finale attendue
+
+```
+src/app/pages/menu/
+ ├── dashboard/
+ ├── calendrier/
+ ├── gestion-salles/
+ ├── notifications/
+ ├── contacts/
+ ├── equipes/
+ ├── mes-reunions/
+ ├── rapports-reunion/
+ ├── notes/
+ ├── todo-list/
+ ├── planification-evenement/
+ ├── parametres/
+ ├── aide-support/
+ ├── corbeille/
+ └── apps/
+```
+
+Souhaites-tu que je t’envoie le code des **routes Angular (`app.routes.ts`)** correspondant à ces composants ?
+
+Voici le code complet du fichier `app.routes.ts` à jour avec **toutes les routes** correspondant aux composants générés :
+
+---
+
+### ✅ `src/app/app.routes.ts`
+
+```ts
+import { Routes } from '@angular/router';
+
+export const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+
+  // Auth
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent)
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
+  },
+
+  // Accueil
+  {
+    path: 'accueil',
+    loadComponent: () => import('./pages/accueil/accueil.component').then(m => m.AccueilComponent)
+  },
+
+  // ----------- MENU PRINCIPAL -----------
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./pages/menu/dashboard/dashboard.component').then(m => m.DashboardComponent)
+  },
+  {
+    path: 'calendrier',
+    loadComponent: () => import('./pages/menu/calendrier/calendrier.component').then(m => m.CalendrierComponent)
+  },
+  {
+    path: 'gestion-salles',
+    loadComponent: () => import('./pages/menu/gestion-salles/gestion-salles.component').then(m => m.GestionSallesComponent)
+  },
+  {
+    path: 'notifications',
+    loadComponent: () => import('./pages/menu/notifications/notifications.component').then(m => m.NotificationsComponent)
+  },
+
+  // ----------- ORGANISATION -----------
+  {
+    path: 'contacts',
+    loadComponent: () => import('./pages/menu/contacts/contacts.component').then(m => m.ContactsComponent)
+  },
+  {
+    path: 'equipes',
+    loadComponent: () => import('./pages/menu/equipes/equipes.component').then(m => m.EquipesComponent)
+  },
+  {
+    path: 'mes-reunions',
+    loadComponent: () => import('./pages/menu/mes-reunions/mes-reunions.component').then(m => m.MesReunionsComponent)
+  },
+  {
+    path: 'rapports-reunion',
+    loadComponent: () => import('./pages/menu/rapports-reunion/rapports-reunion.component').then(m => m.RapportsReunionComponent)
+  },
+
+  // ----------- ESPACE PERSONNEL -----------
+  {
+    path: 'notes',
+    loadComponent: () => import('./pages/menu/notes/notes.component').then(m => m.NotesComponent)
+  },
+  {
+    path: 'todo-list',
+    loadComponent: () => import('./pages/menu/todo-list/todo-list.component').then(m => m.TodoListComponent)
+  },
+  {
+    path: 'planification-evenement',
+    loadComponent: () => import('./pages/menu/planification-evenement/planification-evenement.component').then(m => m.PlanificationEvenementComponent)
+  },
+
+  // ----------- GÉNÉRAL -----------
+  {
+    path: 'parametres',
+    loadComponent: () => import('./pages/menu/parametres/parametres.component').then(m => m.ParametresComponent)
+  },
+  {
+    path: 'aide-support',
+    loadComponent: () => import('./pages/menu/aide-support/aide-support.component').then(m => m.AideSupportComponent)
+  },
+  {
+    path: 'corbeille',
+    loadComponent: () => import('./pages/menu/corbeille/corbeille.component').then(m => m.CorbeilleComponent)
+  },
+  {
+    path: 'apps',
+    loadComponent: () => import('./pages/menu/apps/apps.component').then(m => m.AppsComponent)
+  }
+];
+```
+
+---
+
+💡 **Conseil :** après avoir copié ce fichier, tu peux directement relier les liens de ton menu latéral avec `routerLink="/dashboard"`, `routerLink="/calendrier"`, etc.
+
+Souhaites-tu aussi que je t’aide à intégrer ces routes dans la sidebar HTML ?

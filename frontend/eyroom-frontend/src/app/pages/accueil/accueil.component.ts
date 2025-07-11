@@ -10,5 +10,5 @@ import { CommonModule } from '@angular/common';
 })
 
 export class AccueilComponent {
-   heures = ['08:00', '09:00', '10:00', '11:00', '12:00'];
+  heures = ['08:00', '09:00', '10:00', '11:00', '12:00'];
 }
