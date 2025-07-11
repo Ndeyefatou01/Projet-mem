@@ -673,4 +673,5 @@ Bien sûr ! Voici la **liste complète des URL à tester manuellement** dans t
 ---
 
 
+
 Souhaites-tu que je t’aide à configurer un composant `NotFoundComponent` si une route n’existe pas (404) ?
