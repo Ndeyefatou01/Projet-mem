@@ -1,1 +1,221 @@
-<p>planification-evenement works!</p>
+<div class="meeting-form-container">
+  <div class="form-header">
+    <h2>{{ isEditMode ? 'Modifier la Réunion' : 'Créer une Nouvelle Réunion' }}</h2>
+    <p class="form-description">
+      {{ isEditMode ? 'Modifiez les détails de votre réunion' : 'Planifiez une nouvelle réunion et invitez des participants' }}
+    </p>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" class="meeting-form">
+    <!-- Titre -->
+    <div class="form-group">
+      <label for="title" class="form-label">
+        <i class="fas fa-heading"></i>
+        Sujet de la réunion *
+      </label>
+      <input
+        type="text"
+        id="title"
+        [(ngModel)]="title"
+        name="title"
+        class="form-control"
+        placeholder="Ex: Réunion équipe marketing Q1"
+        maxlength="100"
+        required
+        minlength="3"
+      >
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label for="description" class="form-label">
+        <i class="fas fa-align-left"></i>
+        Description
+      </label>
+      <textarea
+        id="description"
+        [(ngModel)]="description"
+        name="description"
+        class="form-control"
+        placeholder="Décrivez l'objectif..."
+        maxlength="500"
+        rows="3"
+      ></textarea>
+      <div class="character-count">
+        {{ description?.length || 0 }}/500
+      </div>
+    </div>
+
+    <!-- Date et heure -->
+    <div class="form-section">
+      <h3 class="section-title">
+        <i class="fas fa-calendar-alt"></i>
+        Date et Heure
+      </h3>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="startDate">Date de début *</label>
+          <input
+            type="date"
+            id="startDate"
+            [(ngModel)]="startDate"
+            name="startDate"
+            class="form-control"
+            required
+          >
+        </div>
+        <div class="form-group">
+          <label for="startTime">Heure de début *</label>
+          <input
+            type="time"
+            id="startTime"
+            [(ngModel)]="startTime"
+            name="startTime"
+            class="form-control"
+            required
+          >
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="endDate">Date de fin *</label>
+          <input
+            type="date"
+            id="endDate"
+            [(ngModel)]="endDate"
+            name="endDate"
+            class="form-control"
+            required
+          >
+        </div>
+        <div class="form-group">
+          <label for="endTime">Heure de fin *</label>
+          <input
+            type="time"
+            id="endTime"
+            [(ngModel)]="endTime"
+            name="endTime"
+            class="form-control"
+            required
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Salle de réunion -->
+    <div class="form-section">
+      <h3 class="section-title">
+        <i class="fas fa-door-open"></i>
+        Salle de Réunion
+      </h3>
+      <div class="form-group">
+        <label for="roomId">Sélectionnez une salle *</label>
+        <select
+          id="roomId"
+          [(ngModel)]="roomId"
+          name="roomId"
+          class="form-control"
+          required
+        >
+          <option value="">Choisir une salle...</option>
+          <option *ngFor="let room of availableRooms" [value]="room.id">
+            {{ room.name }} - {{ room.capacity }} pers ({{ room.location }})
+          </option>
+        </select>
+      </div>
+
+      <div *ngIf="roomId">
+        <div *ngFor="let room of availableRooms">
+          <div *ngIf="room.id === roomId" class="room-details">
+            <h4>{{ room.name }}</h4>
+            <p>{{ room.location }} - Capacité : {{ room.capacity }} personnes</p>
+            <div>
+              <strong>Équipements :</strong>
+              <span *ngFor="let eq of room.equipment" class="equipment-tag">{{ eq }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Participants -->
+    <div class="form-section">
+      <h3 class="section-title">
+        <i class="fas fa-users"></i>
+        Participants
+        <span *ngIf="selectedParticipants.length > 0">
+          ({{ selectedParticipants.length }})
+        </span>
+      </h3>
+
+      <div *ngIf="selectedParticipants.length > 0" class="selected-participants">
+        <div *ngFor="let p of selectedParticipants" class="participant-item">
+          <div>
+            <strong>{{ p.name }}</strong>
+            <span>{{ p.email }}</span>
+          </div>
+          <button type="button" (click)="removeParticipant(p.id)" title="Supprimer">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-outline"
+        (click)="toggleParticipantSearch()"
+      >
+        <i class="fas fa-user-plus"></i>
+        Ajouter des participants
+      </button>
+
+      <div *ngIf="showParticipantSearch" class="participant-search">
+        <input
+          type="text"
+          placeholder="Rechercher un employé..."
+          [(ngModel)]="searchQuery"
+          (input)="onSearchParticipants()"
+          [ngModelOptions]="{standalone: true}"
+          class="search-input"
+        >
+
+        <div *ngIf="filteredEmployees.length > 0">
+          <div *ngFor="let emp of filteredEmployees" class="employee-item">
+            <div>
+              <strong>{{ emp.name }}</strong> <span>{{ emp.email }}</span>
+            </div>
+            <button type="button" (click)="addParticipant(emp)">Ajouter</button>
+          </div>
+        </div>
+
+        <div *ngIf="filteredEmployees.length === 0 && searchQuery">
+          <p>Aucun résultat pour "{{ searchQuery }}"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="form-actions">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="onCancel()"
+        [disabled]="isLoading"
+      >
+        Annuler
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="isLoading"
+      >
+        <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+        <i *ngIf="!isLoading" class="fas fa-check"></i>
+        {{ isEditMode ? 'Mettre à jour' : 'Créer la réunion' }}
+      </button>
+    </div>
+  </form>
+</div>
+
