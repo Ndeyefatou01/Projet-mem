@@ -524,10 +524,153 @@ Voici comment modifier ta sidebar HTML pour intégrer tous les liens de navigati
 
 
 ###  Teste chaque route manuellement
-Dans le navigateur :
+Bien sûr ! Voici la **liste complète des URL à tester manuellement** dans ton navigateur, en fonction des routes que tu as définies :
+---
 
-http://localhost:4200/dashboard
+### 🏠 Accueil
+📍 URL : `http://localhost:4200/accueil`
+```markdown
+![Aperçu de l’accueil](src/assets/accueil.png)  
+<img src="src/assets/accueil.png" alt="Accueil" width="600">
+```
 
-http://localhost:4200/notes
+---
 
-etc.
+### 📊 Dashboard
+📍 URL : `http://localhost:4200/dashboard`
+```markdown
+![Aperçu du dashboard](src/assets/dashboard.png)  
+<img src="src/assets/dashboard.png" alt="Dashboard" width="600">
+```
+
+---
+
+### 📅 Calendrier
+📍 URL : `http://localhost:4200/calendrier`
+```markdown
+![Aperçu du calendrier](src/assets/calendrier.png)  
+<img src="src/assets/calendrier.png" alt="Calendrier" width="600">
+```
+
+---
+
+### 🏢 Gestion des salles
+📍 URL : `http://localhost:4200/gestion-salles`
+```markdown
+![Aperçu de la gestion des salles](src/assets/gestion-salles.png)  
+<img src="src/assets/gestion-salles.png" alt="Gestion des salles" width="600">
+```
+
+---
+
+### 🔔 Notifications
+📍 URL : `http://localhost:4200/notifications`
+```markdown
+![Aperçu des notifications](src/assets/notifications.png)  
+<img src="src/assets/notifications.png" alt="Notifications" width="600">
+```
+
+---
+
+### 👥 Contacts
+📍 URL : `http://localhost:4200/contacts`
+```markdown
+![Aperçu des contacts](src/assets/contacts.png)  
+<img src="src/assets/contacts.png" alt="Contacts" width="600">
+```
+
+---
+
+### 👨‍👩‍👧‍👦 Équipes
+📍 URL : `http://localhost:4200/equipes`
+```markdown
+![Aperçu des équipes](src/assets/equipes.png)  
+<img src="src/assets/equipes.png" alt="Équipes" width="600">
+```
+
+---
+
+### 📁 Mes réunions
+📍 URL : `http://localhost:4200/mes-reunions`
+```markdown
+![Aperçu de mes réunions](src/assets/mes-reunions.png)  
+<img src="src/assets/mes-reunions.png" alt="Mes réunions" width="600">
+```
+
+---
+
+### 🧾 Rapports de réunion
+📍 URL : `http://localhost:4200/rapports-reunion`
+```markdown
+![Aperçu des rapports de réunion](src/assets/rapports-reunion.png)  
+<img src="src/assets/rapports-reunion.png" alt="Rapports de réunion" width="600">
+```
+
+---
+
+### 🗒 Notes
+📍 URL : `http://localhost:4200/notes`
+```markdown
+![Aperçu des notes](src/assets/notes.png)  
+<img src="src/assets/notes.png" alt="Notes" width="600">
+```
+
+---
+
+### ✅ To-do List
+📍 URL : `http://localhost:4200/todo-list`
+```markdown
+![Aperçu de la To-do List](src/assets/todo-list.png)  
+<img src="src/assets/todo-list.png" alt="To-do List" width="600">
+```
+
+---
+
+### 📆 Planification d’événement
+📍 URL : `http://localhost:4200/planification-evenement`
+```markdown
+![Aperçu de la planification d’événement](src/assets/planification-evenement.png)  
+<img src="src/assets/planification-evenement.png" alt="Planification d’événement" width="600">
+```
+
+---
+
+### ⚙️ Paramètres
+📍 URL : `http://localhost:4200/parametres`
+```markdown
+![Aperçu des paramètres](src/assets/parametres.png)  
+<img src="src/assets/parametres.png" alt="Paramètres" width="600">
+```
+
+---
+
+### ❓ Aide et support
+📍 URL : `http://localhost:4200/aide-support`
+```markdown
+![Aperçu de l’aide et support](src/assets/aide-support.png)  
+<img src="src/assets/aide-support.png" alt="Aide et support" width="600">
+```
+
+---
+
+### 🗑 Corbeille
+📍 URL : `http://localhost:4200/corbeille`
+```markdown
+![Aperçu de la corbeille](src/assets/corbeille.png)  
+<img src="src/assets/corbeille.png" alt="Corbeille" width="600">
+```
+
+---
+
+### 🧩 Apps
+
+📍 URL: `http://localhost:4200/apps`
+```markdown
+![Aperçu des apps](src/assets/apps.png)  
+<img src="src/assets/apps.png" alt="Apps" width="600">
+```
+
+---
+
+
+Souhaites-tu que je t’aide à configurer un composant `NotFoundComponent` si une route n’existe pas (404) ?
