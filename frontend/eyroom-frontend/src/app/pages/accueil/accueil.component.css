@@ -216,3 +216,26 @@
   background-color: #f50057 !important;
   color: white;
 }
+
+
+/* 🎨 Style des liens dans la sidebar */
+.sidebar .menu ul li a {
+  display: flex;               /* Place l'icône et le texte sur la même ligne */
+  align-items: center;         /* Aligne verticalement l'icône et le texte */
+  gap: 10px;                   /* Espace entre l'icône et le texte */
+  color: white;                /* Couleur du texte */
+  text-decoration: none;       /* Supprime le soulignement par défaut des liens */
+  font-weight: 500;            /* Rend le texte un peu plus gras */
+  transition: color 0.3s;      /* Animation fluide lors du changement de couleur */
+}
+
+/* 🖱️ Effet au survol */
+.sidebar .menu ul li a:hover {
+  color: #f50057;              /* Couleur rose au survol */
+}
+
+/* 🔘 Style du lien actif (lien de la page actuellement affichée) */
+.sidebar .menu ul li a.active {
+  color: #f50057;              /* Même couleur que le survol pour la cohérence */
+  font-weight: bold;           /* Met en valeur le lien actif */
+}
