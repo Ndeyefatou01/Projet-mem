@@ -9,33 +9,33 @@
     <nav class="menu">
       <h3>MENU PRINCIPAL</h3>
       <ul>
-        <li><i class="bi bi-speedometer2"></i> Tableau de Bord</li>
-        <li><i class="bi bi-calendar-week"></i> Calendrier</li>
-        <li><i class="bi bi-door-open"></i> Gestion des Salles de réunion</li>
-        <li><i class="bi bi-bell"></i> Notifications</li>
+        <li><a routerLink="/dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+        <li><a routerLink="/calendrier"><i class="bi bi-calendar-week"></i> Calendrier</a></li>
+        <li><a routerLink="/gestion-salles"><i class="bi bi-door-open"></i> Gestion des Salles</a></li>
+        <li><a routerLink="/notifications"><i class="bi bi-bell"></i> Notifications</a></li>
       </ul>
 
       <h3>ORGANISATION</h3>
       <ul>
-        <li><i class="bi bi-person-lines-fill"></i> Contacts</li>
-        <li><i class="bi bi-people-fill"></i> Équipes</li>
-        <li><i class="bi bi-briefcase"></i> Mes réunions</li>
-        <li><i class="bi bi-file-earmark-text"></i> Rapports de réunion</li>
+        <li><a routerLink="/contacts"><i class="bi bi-person-lines-fill"></i> Contacts</a></li>
+        <li><a routerLink="/equipes"><i class="bi bi-people-fill"></i> Équipes</a></li>
+        <li><a routerLink="/mes-reunions"><i class="bi bi-briefcase"></i> Mes réunions</a></li>
+        <li><a routerLink="/rapports-reunion"><i class="bi bi-file-earmark-text"></i> Rapports</a></li>
       </ul>
 
       <h3>ESPACE PERSONNEL</h3>
       <ul>
-        <li><i class="bi bi-stickies"></i> Notes</li>
-        <li><i class="bi bi-check2-square"></i> To-do List</li>
-        <li><i class="bi bi-calendar-plus"></i> Planification d’événement</li>
+        <li><a routerLink="/notes"><i class="bi bi-stickies"></i> Notes</a></li>
+        <li><a routerLink="/todo-list"><i class="bi bi-check2-square"></i> To-do List</a></li>
+        <li><a routerLink="/planification-evenement"><i class="bi bi-calendar-plus"></i> Planification</a></li>
       </ul>
 
       <h3>GÉNÉRAL</h3>
       <ul>
-        <li><i class="bi bi-gear"></i> Paramètres</li>
-        <li><i class="bi bi-question-circle"></i> Aide et support</li>
-        <li><i class="bi bi-trash"></i> Corbeille</li>
-        <li><i class="bi bi-grid-3x3-gap"></i> Apps</li>
+        <li><a routerLink="/parametres"><i class="bi bi-gear"></i> Paramètres</a></li>
+        <li><a routerLink="/aide-support"><i class="bi bi-question-circle"></i> Aide et support</a></li>
+        <li><a routerLink="/corbeille"><i class="bi bi-trash"></i> Corbeille</a></li>
+        <li><a routerLink="/apps"><i class="bi bi-grid-3x3-gap"></i> Apps</a></li>
       </ul>
 
       <div class="user-section">
@@ -47,7 +47,6 @@
 
   <!-- Main Content -->
   <main class="calendar-section">
-    <!-- Header -->
     <header class="calendar-header">
       <div class="header-left">
         <h1>Calendrier</h1>
@@ -55,22 +54,20 @@
       </div>
 
       <div class="header-right">
-        <i class="bi bi-search"></i>
-        <i class="bi bi-question-circle"></i>
-        <i class="bi bi-share"></i>
+        <i class="bi bi-search" title="Recherche"></i>
+        <i class="bi bi-question-circle" title="Aide"></i>
+        <i class="bi bi-share" title="Partager"></i>
 
-        <<div class="nav-arrows">
-            <button title="Jour précédent"><i class="bi bi-chevron-left"></i></button>
-            <button title="Jour suivant"><i class="bi bi-chevron-right"></i></button>
+        <div class="nav-arrows">
+          <button title="Jour précédent"><i class="bi bi-chevron-left"></i></button>
+          <button title="Jour suivant"><i class="bi bi-chevron-right"></i></button>
         </div>
 
-
-        <<select class="dropdown-view" title="Vue du calendrier">
-            <option>Semaine</option>
-            <option>Mois</option>
-            <option>Jour</option>
+        <select class="dropdown-view" title="Vue du calendrier">
+          <option>Semaine</option>
+          <option>Mois</option>
+          <option>Jour</option>
         </select>
-
 
         <button class="add-btn">+ Créer</button>
       </div>
@@ -84,7 +81,6 @@
       </div>
     </header>
 
-    <!-- Calendrier -->
     <section class="calendar-grid">
       <table>
         <thead>

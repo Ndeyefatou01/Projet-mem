@@ -287,26 +287,19 @@ Hibernate se charge de créer les tables.
 
 ---
 
-**Prochaine étape** : Construction du **Dashboard** et du **calendrier des réunions**.
-
-
-
-
-Parfait ! Alors on remplace **"tableau"** par **"dashboard"** pour correspondre au nom correct du composant.
+**Prochaine étape** : Construction du **Dashboard** et du **calendrier des réunions** etc.
 
 Voici les **commandes mises à jour** pour générer tous tes composants avec une structure propre :
 
----
-
-## ✅ Structure de génération avec `dashboard` au lieu de `tableau`
+## ✅ Structure de génération : à exécuter depuis src/app/pages/menu
 
 ### 🔹 1. MENU PRINCIPAL
 
 ```bash
-ng generate component pages/menu/dashboard --standalone
-ng generate component pages/menu/calendrier --standalone
-ng generate component pages/menu/gestion-salles --standalone
-ng generate component pages/menu/notifications --standalone
+ng generate component menu-principal/dashboard --standalone
+ng generate component menu-principal/calendrier --standalone
+ng generate component menu-principal/gestion-salles --standalone
+ng generate component menu-principal/notifications --standalone
 ```
 
 ---
@@ -314,57 +307,60 @@ ng generate component pages/menu/notifications --standalone
 ### 🔹 2. ORGANISATION
 
 ```bash
-ng generate component pages/menu/contacts --standalone
-ng generate component pages/menu/equipes --standalone
-ng generate component pages/menu/mes-reunions --standalone
-ng generate component pages/menu/rapports-reunion --standalone
+ng generate component organisation/contacts --standalone
+ng generate component organisation/equipes --standalone
+ng generate component organisation/mes-reunions --standalone
+ng generate component organisation/rapports-reunion --standalone
 ```
-
----
 
 ### 🔹 3. ESPACE PERSONNEL
 
 ```bash
-ng generate component pages/menu/notes --standalone
-ng generate component pages/menu/todo-list --standalone
-ng generate component pages/menu/planification-evenement --standalone
+ng generate component espace-personnel/notes --standalone
+ng generate component espace-personnel/todo-list --standalone
+ng generate component espace-personnel/planification-evenement --standalone
 ```
-
----
 
 ### 🔹 4. GÉNÉRAL
 
 ```bash
-ng generate component pages/menu/parametres --standalone
-ng generate component pages/menu/aide-support --standalone
-ng generate component pages/menu/corbeille --standalone
-ng generate component pages/menu/apps --standalone
+ng generate component general/parametres --standalone
+ng generate component general/aide-support --standalone
+ng generate component general/corbeille --standalone
+ng generate component general/apps --standalone
+
 ```
 
----
 
 ## 📁 Arborescence finale attendue
 
-```
-src/app/pages/menu/
- ├── dashboard/
- ├── calendrier/
- ├── gestion-salles/
- ├── notifications/
- ├── contacts/
- ├── equipes/
- ├── mes-reunions/
- ├── rapports-reunion/
- ├── notes/
- ├── todo-list/
- ├── planification-evenement/
- ├── parametres/
- ├── aide-support/
- ├── corbeille/
- └── apps/
-```
+src/
+├── app/
+│   ├── pages/
+│   │   ├── login/
+│   │   ├── register/
+│   │   ├── accueil/
+│   │   └── menu/
+│   │       ├── menu-principal/
+│   │       │   ├── dashboard/
+│   │       │   ├── calendrier/
+│   │       │   ├── gestion-salles/
+│   │       │   └── notifications/
+│   │       ├── organisation/
+│   │       │   ├── contacts/
+│   │       │   ├── equipes/
+│   │       │   ├── mes-reunions/
+│   │       │   └── rapports-reunion/
+│   │       ├── espace-personnel/
+│   │       │   ├── notes/
+│   │       │   ├── todo-list/
+│   │       │   └── planification-evenement/
+│   │       └── general/
+│   │           ├── parametres/
+│   │           ├── aide-support/
+│   │           ├── corbeille/
+│   │           └── apps/
 
-Souhaites-tu que je t’envoie le code des **routes Angular (`app.routes.ts`)** correspondant à ces composants ?
 
 Voici le code complet du fichier `app.routes.ts` à jour avec **toutes les routes** correspondant aux composants générés :
 
@@ -378,88 +374,95 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
-  // Auth
+// Auth
   {
     path: 'login',
-    loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent)
+    loadComponent: () =>
+      import('./pages/login/login.component').then(m => m.LoginComponent)
   },
   {
     path: 'register',
-    loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
+    loadComponent: () =>
+      import('./pages/register/register.component').then(m => m.RegisterComponent)
   },
 
-  // Accueil
+// Accueil  
   {
     path: 'accueil',
-    loadComponent: () => import('./pages/accueil/accueil.component').then(m => m.AccueilComponent)
+    loadComponent: () =>
+      import('./pages/accueil/accueil.component').then(m => m.AccueilComponent)
   },
 
-  // ----------- MENU PRINCIPAL -----------
+  // 🔹 Autres composants à générer
+
+ // ----------- MENU PRINCIPAL -----------
+  // 🔹 Dashboard sera une vraie page analytique (KPI, graphiques...)
   {
     path: 'dashboard',
-    loadComponent: () => import('./pages/menu/dashboard/dashboard.component').then(m => m.DashboardComponent)
-  },
-  {
-    path: 'calendrier',
-    loadComponent: () => import('./pages/menu/calendrier/calendrier.component').then(m => m.CalendrierComponent)
-  },
-  {
-    path: 'gestion-salles',
-    loadComponent: () => import('./pages/menu/gestion-salles/gestion-salles.component').then(m => m.GestionSallesComponent)
-  },
-  {
-    path: 'notifications',
-    loadComponent: () => import('./pages/menu/notifications/notifications.component').then(m => m.NotificationsComponent)
+    loadComponent: () => import('./pages/menu/menu-principal/dashboard/dashboard.component').then(m => m.DashboardComponent)
   },
 
-  // ----------- ORGANISATION -----------
-  {
-    path: 'contacts',
-    loadComponent: () => import('./pages/menu/contacts/contacts.component').then(m => m.ContactsComponent)
-  },
-  {
-    path: 'equipes',
-    loadComponent: () => import('./pages/menu/equipes/equipes.component').then(m => m.EquipesComponent)
-  },
-  {
-    path: 'mes-reunions',
-    loadComponent: () => import('./pages/menu/mes-reunions/mes-reunions.component').then(m => m.MesReunionsComponent)
-  },
-  {
-    path: 'rapports-reunion',
-    loadComponent: () => import('./pages/menu/rapports-reunion/rapports-reunion.component').then(m => m.RapportsReunionComponent)
+  { path: 'calendrier', 
+    loadComponent: () => import('./pages/menu/menu-principal/calendrier/calendrier.component').then(m => m.CalendrierComponent)  
   },
 
-  // ----------- ESPACE PERSONNEL -----------
-  {
-    path: 'notes',
-    loadComponent: () => import('./pages/menu/notes/notes.component').then(m => m.NotesComponent)
-  },
-  {
-    path: 'todo-list',
-    loadComponent: () => import('./pages/menu/todo-list/todo-list.component').then(m => m.TodoListComponent)
-  },
-  {
-    path: 'planification-evenement',
-    loadComponent: () => import('./pages/menu/planification-evenement/planification-evenement.component').then(m => m.PlanificationEvenementComponent)
+
+  { path: 'gestion-salles', 
+    loadComponent: () => import('./pages/menu/menu-principal/gestion-salles/gestion-salles.component').then(m => m.GestionSallesComponent) 
   },
 
-  // ----------- GÉNÉRAL -----------
-  {
-    path: 'parametres',
-    loadComponent: () => import('./pages/menu/parametres/parametres.component').then(m => m.ParametresComponent)
+
+  { path: 'notifications', 
+    loadComponent: () => import('./pages/menu/menu-principal/notifications/notifications.component').then(m => m.NotificationsComponent) 
   },
-  {
-    path: 'aide-support',
-    loadComponent: () => import('./pages/menu/aide-support/aide-support.component').then(m => m.AideSupportComponent)
+
+
+// ----------- ORGANISATION -----------  
+  { path: 'contacts', loadComponent: () => import('./pages/menu/organisation/contacts/contacts.component').then(m => m.ContactsComponent) },
+
+  { path: 'equipes', 
+    loadComponent: () => import('./pages/menu/organisation/equipes/equipes.component').then(m => m.EquipesComponent) 
   },
-  {
-    path: 'corbeille',
-    loadComponent: () => import('./pages/menu/corbeille/corbeille.component').then(m => m.CorbeilleComponent)
+
+  { path: 'mes-reunions', 
+    loadComponent: () => import('./pages/menu/organisation/mes-reunions/mes-reunions.component').then(m => m.MesReunionsComponent) 
   },
-  {
-    path: 'apps',
-    loadComponent: () => import('./pages/menu/apps/apps.component').then(m => m.AppsComponent)
+
+  { path: 'rapports-reunion', 
+    loadComponent: () => import('./pages/menu/organisation/rapports-reunion/rapports-reunion.component').then(m => m.RapportsReunionComponent) 
+  },
+
+
+  
+// ----------- ESPACE PERSONNEL -----------
+  { path: 'notes', loadComponent: () => import('./pages/menu/espace-personnel/notes/notes.component').then(m => m.NotesComponent) },
+
+  { path: 'todo-list', loadComponent: () => import('./pages/menu/espace-personnel/todo-list/todo-list.component').then(m => m.TodoListComponent) },
+
+  { path: 'planification-evenement', 
+    loadComponent: () => import('./pages/menu/espace-personnel/planification-evenement/planification-evenement.component').then(m => m.PlanificationEvenementComponent) 
+  },
+
+
+  
+// ----------- GÉNÉRAL -----------
+  { path: 'parametres', 
+    loadComponent: () => import('./pages/menu/general/parametres/parametres.component').then(m => m.ParametresComponent) 
+  },
+
+  { path: 'aide-support', 
+    loadComponent: () => import('./pages/menu/general/aide-support/aide-support.component').then(m => m.AideSupportComponent) 
+  
+  },
+  
+  { path: 'corbeille', 
+    loadComponent: () => import('./pages/menu/general/corbeille/corbeille.component').then(m => m.CorbeilleComponent) 
+
+  },
+  
+  { path: 'apps', 
+    loadComponent: () => import('./pages/menu/general/apps/apps.component').then(m => m.AppsComponent) 
+
   }
 ];
 ```
@@ -468,4 +471,63 @@ export const routes: Routes = [
 
 💡 **Conseil :** après avoir copié ce fichier, tu peux directement relier les liens de ton menu latéral avec `routerLink="/dashboard"`, `routerLink="/calendrier"`, etc.
 
-Souhaites-tu aussi que je t’aide à intégrer ces routes dans la sidebar HTML ?
+Voici comment modifier ta sidebar HTML pour intégrer tous les liens de navigation Angular avec routerLink, en respectant les chemins que tu viens de créer.
+
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo-section">
+      <i class="bi bi-app-indicator logo-icon"></i>
+      <span class="logo-text">Eyroom</span>
+    </div>
+
+    <nav class="menu">
+      <h3>MENU PRINCIPAL</h3>
+      <ul>
+        <li><a routerLink="/dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+        <li><a routerLink="/calendrier"><i class="bi bi-calendar-week"></i> Calendrier</a></li>
+        <li><a routerLink="/gestion-salles"><i class="bi bi-door-open"></i> Gestion des Salles</a></li>
+        <li><a routerLink="/notifications"><i class="bi bi-bell"></i> Notifications</a></li>
+      </ul>
+
+      <h3>ORGANISATION</h3>
+      <ul>
+        <li><a routerLink="/contacts"><i class="bi bi-person-lines-fill"></i> Contacts</a></li>
+        <li><a routerLink="/equipes"><i class="bi bi-people-fill"></i> Équipes</a></li>
+        <li><a routerLink="/mes-reunions"><i class="bi bi-briefcase"></i> Mes réunions</a></li>
+        <li><a routerLink="/rapports-reunion"><i class="bi bi-file-earmark-text"></i> Rapports</a></li>
+      </ul>
+
+      <h3>ESPACE PERSONNEL</h3>
+      <ul>
+        <li><a routerLink="/notes"><i class="bi bi-stickies"></i> Notes</a></li>
+        <li><a routerLink="/todo-list"><i class="bi bi-check2-square"></i> To-do List</a></li>
+        <li><a routerLink="/planification-evenement"><i class="bi bi-calendar-plus"></i> Planification</a></li>
+      </ul>
+
+      <h3>GÉNÉRAL</h3>
+      <ul>
+        <li><a routerLink="/parametres"><i class="bi bi-gear"></i> Paramètres</a></li>
+        <li><a routerLink="/aide-support"><i class="bi bi-question-circle"></i> Aide et support</a></li>
+        <li><a routerLink="/corbeille"><i class="bi bi-trash"></i> Corbeille</a></li>
+        <li><a routerLink="/apps"><i class="bi bi-grid-3x3-gap"></i> Apps</a></li>
+      </ul>
+
+      <div class="user-section">
+        <img src="https://i.pravatar.cc/40?img=7" alt="Utilisateur" />
+        <span>Basile SIOTENE</span>
+      </div>
+    </nav>
+  </aside>
+
+
+
+
+###  Teste chaque route manuellement
+Dans le navigateur :
+
+http://localhost:4200/dashboard
+
+http://localhost:4200/notes
+
+etc.
